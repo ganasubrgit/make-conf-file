@@ -22,5 +22,5 @@ func main() {
 	os.Chmod(SRVFILE, 0644)
 	c := exec.Command("/bin/sh", "-c", "systemctl daemon-reload;systemctl start veld.service;systemctl enable veld.service")
 	c.Run()
-	println("System service installed successfully...")
+	println("Veld service installed successfully...")
 }
