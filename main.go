@@ -23,7 +23,7 @@ func exist(PATH string) {
 
 //Support contact
 func help() {
-	println("For assistance contact Tecknologics support.")
+	println("For assistance, email support@tecknologics.com")
 }
 
 func main() {
