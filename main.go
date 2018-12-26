@@ -5,13 +5,31 @@ import (
 	"os/exec"
 )
 
+var APPFILE string = "/etc/PitCrew/vel.py"
+
 func check(e error) {
 	if e != nil {
 		panic(e)
 	}
 }
 
+func exist(PATH string) {
+	if _, err := os.Stat(PATH); os.IsNotExist(err) {
+		println("Application not installed.", APPFILE, "file not found, Please check and try again.")
+		help()
+		os.Exit(1)
+	}
+}
+
+//Support contact
+func help() {
+	println("For assistance contact Tecknologics support.")
+}
+
 func main() {
+
+	//check app file exist
+	exist(APPFILE)
 	SRVFILE := "/etc/systemd/system/veld.service"
 	f, err := os.Create(SRVFILE)
 	check(err)
@@ -23,5 +41,5 @@ func main() {
 	c := exec.Command("/bin/sh", "-c", "systemctl daemon-reload;systemctl start veld.service;systemctl enable veld.service")
 	c.Run()
 	println("Veld service installed successfully!")
-	println("For assistance contact Tecknologics support")
+	help()
 }
